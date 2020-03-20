@@ -1,4 +1,4 @@
-package me.davenkin.scan;
+package com.chauncy.scan;
 
 import java.util.ArrayList;
 import java.util.List;

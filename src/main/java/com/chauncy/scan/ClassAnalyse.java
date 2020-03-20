@@ -1,4 +1,4 @@
-package me.davenkin.scan;
+package com.chauncy.scan;
 
 /**
  * @author : chengxu@corp.netease.com

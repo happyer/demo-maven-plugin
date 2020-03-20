@@ -1,4 +1,4 @@
-package me.davenkin.scan;
+package com.chauncy.scan;
 
 import java.util.Set;
 import java.util.function.Predicate;

@@ -1,10 +1,10 @@
-package me.davenkin;
+package com.chauncy;
 
-import me.davenkin.scan.BigDecimalClassAnalyse;
-import me.davenkin.scan.ClassScannerUtils;
-import me.davenkin.scan.Observer;
-import me.davenkin.scan.ObserverImpl;
-import me.davenkin.scan.SerializerClassAnalyse;
+import com.chauncy.scan.BigDecimalClassAnalyse;
+import com.chauncy.scan.SerializerClassAnalyse;
+import com.chauncy.scan.ClassScannerUtils;
+import com.chauncy.scan.Observer;
+import com.chauncy.scan.ObserverImpl;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
