@@ -4,7 +4,7 @@ import java.util.Set;
 import java.util.function.Predicate;
 
 /**
- * @author : chengxu@corp.netease.com
+ * @author : cxujdk@gmail.com
  * @since : 2020/3/20
  */
 public class ClassScannerUtils {

@@ -3,7 +3,7 @@ package com.chauncy.scan;
 import java.lang.reflect.Field;
 
 /**
- * @author : chengxu@corp.netease.com
+ * @author : cxujdk@gmail.com
  * @since : 2020/3/20
  */
 public class BigDecimalClassAnalyse implements ClassAnalyse {

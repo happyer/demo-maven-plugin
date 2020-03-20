@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author : chengxu@corp.netease.com
+ * @author : cxujdk@gmail.com
  * @since : 2020/3/20
  */
 public class ObserverImpl implements Observer {

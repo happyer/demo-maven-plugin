@@ -11,7 +11,7 @@ import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
 /**
- * @author : chengxu@corp.netease.com
+ * @author : cxujdk@gmail.com
  * @since : 2020/3/20
  */
 public class JarScanner implements Scan {
