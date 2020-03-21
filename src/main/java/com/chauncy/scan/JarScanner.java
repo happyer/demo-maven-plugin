@@ -1,25 +1,19 @@
 package com.chauncy.scan;
 
-import java.io.IOException;
 import java.net.JarURLConnection;
 import java.net.URL;
 import java.util.Enumeration;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.function.Predicate;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
-/**
- * @author : cxujdk@gmail.com
- * @since : 2020/3/20
- */
-public class JarScanner implements Scan {
 
-    @Override
-    public Set<Class<?>> search(String packageName, Predicate<String> predicate) {
+public class JarScanner implements ClassScan {
 
-        Set<Class<?>> classes = new HashSet<>();
+    public Set<Class<?>> search(String packageName, MyPredicate<String> predicate) {
+
+        Set<Class<?>> classes = new HashSet<Class<?>>();
 
         try {
             Enumeration<URL> urlEnumeration = Thread.currentThread().getContextClassLoader()
@@ -60,7 +54,7 @@ public class JarScanner implements Scan {
                     classes.addAll(fileScanner.search(packageName, predicate));
                 }
             }
-        } catch (ClassNotFoundException | IOException e) {
+        } catch (Exception  e) {
             throw new RuntimeException(e.getMessage(), e);
         }
         return classes;

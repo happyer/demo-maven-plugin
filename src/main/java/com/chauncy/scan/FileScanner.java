@@ -3,13 +3,8 @@ package com.chauncy.scan;
 import java.io.File;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.function.Predicate;
 
-/**
- * @author : cxujdk@gmail.com
- * @since : 2020/3/20
- */
-public class FileScanner implements Scan {
+public class FileScanner implements ClassScan {
 
 
 
@@ -33,9 +28,9 @@ public class FileScanner implements Scan {
 
 
     private static class ClassSearcher{
-        private Set<Class<?>> classPaths = new HashSet<>();
+        private Set<Class<?>> classPaths = new HashSet<Class<?>>();
 
-        private Set<Class<?>> doPath(File file,String packageName, Predicate<String> predicate,boolean flag) {
+        private Set<Class<?>> doPath(File file,String packageName, MyPredicate<String> predicate,boolean flag) {
 
             if (file.isDirectory()) {
                 //文件夹我们就递归
@@ -68,8 +63,7 @@ public class FileScanner implements Scan {
         }
     }
 
-    @Override
-    public Set<Class<?>> search(String packageName, Predicate<String> predicate) {
+    public Set<Class<?>> search(String packageName, MyPredicate<String> predicate) {
         //先把包名转换为路径,首先得到项目的classpath
         String classpath = defaultClassPath;
         //然后把我们的包名basPack转换为路径名
