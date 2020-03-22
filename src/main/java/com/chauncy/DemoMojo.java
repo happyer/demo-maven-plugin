@@ -16,18 +16,18 @@ public class DemoMojo extends AbstractMojo {
 
 
     public void execute() throws MojoExecutionException, MojoFailureException {
-        getLog().info( "Hello, world." );
 
         Observer observer = new ObserverImpl();
         observer.addAnalyser(new BigDecimalClassAnalyse());
         observer.addAnalyser(new SerializerClassAnalyse());
 
+        String baseDir = "/Users/chauncy/Desktop/self/Study/MyNetty4/target/classes/";
         ClassScannerUtils.searchClasses("com.netease.music", new MyPredicate<String>() {
             public boolean test(String oo) {
                 return oo.contains("DTO") || oo.contains("VO") || oo
                     .contains("Dto");
             }
-        }, observer);
+        }, observer, baseDir);
     }
 
 }

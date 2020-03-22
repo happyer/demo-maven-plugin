@@ -9,7 +9,7 @@ public class SerializerClassAnalyse implements ClassAnalyse {
 
         if (!(src instanceof Serializable)) {
             System.out.println(" not Serializer impl = " + src.getName());
-
         }
+
     }
 }

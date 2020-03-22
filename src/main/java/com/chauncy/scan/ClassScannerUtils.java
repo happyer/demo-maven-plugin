@@ -13,8 +13,22 @@ public class ClassScannerUtils {
         return ScanExecutor.getInstance().search(packageName, predicate);
     }
 
-    public static void searchClasses(String packageName, MyPredicate<String> predicate, Observer observer) {
+
+    public static Set<Class<?>> searchClasses(String packageName, MyPredicate<String> predicate,
+        String baseDir) {
+        return ScanExecutor.getInstance().search(packageName, predicate, baseDir);
+    }
+
+    public static void searchClasses(String packageName, MyPredicate<String> predicate,
+        Observer observer) {
         for (Class<?> searchClass : searchClasses(packageName, predicate)) {
+            observer.notifyAnalyser(searchClass);
+        }
+    }
+
+    public static void searchClasses(String packageName, MyPredicate<String> predicate,
+        Observer observer, String baseDir) {
+        for (Class<?> searchClass : searchClasses(packageName, predicate, baseDir)) {
             observer.notifyAnalyser(searchClass);
         }
     }
