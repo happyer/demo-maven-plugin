@@ -1,6 +1,7 @@
 package com.chauncy.scan;
 
 import java.util.Set;
+import org.apache.maven.project.MavenProject;
 
 
 public class ScanExecutor implements ClassScan {
@@ -19,9 +20,18 @@ public class ScanExecutor implements ClassScan {
     public Set<Class<?>> search(String packageName, MyPredicate<String> predicate,String baseDir) {
         ClassScan fileSc = new FileScanner(baseDir);
         Set<Class<?>> fileSearch = fileSc.search(packageName, predicate);
-//        ClassScan jarScanner = new JarScanner();
-//        Set<Class<?>> jarSearch = jarScanner.search(packageName,predicate);
-//        fileSearch.addAll(jarSearch);
+        ClassScan jarScanner = new JarScanner();
+        Set<Class<?>> jarSearch = jarScanner.search(packageName,predicate);
+        fileSearch.addAll(jarSearch);
+        return fileSearch;
+    }
+
+    public Set<Class<?>> search(String packageName, MyPredicate<String> predicate, MavenProject mavenProject) {
+        ClassScan fileSc = new FileScanner(mavenProject);
+        Set<Class<?>> fileSearch = fileSc.search(packageName, predicate);
+        ClassScan jarScanner = new JarScanner(mavenProject);
+        Set<Class<?>> jarSearch = jarScanner.search(packageName,predicate);
+        fileSearch.addAll(jarSearch);
         return fileSearch;
     }
 

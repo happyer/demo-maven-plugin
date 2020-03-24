@@ -1,6 +1,7 @@
 package com.chauncy.scan;
 
 import java.util.Set;
+import org.apache.maven.project.MavenProject;
 
 
 public class ClassScannerUtils {
@@ -19,6 +20,11 @@ public class ClassScannerUtils {
         return ScanExecutor.getInstance().search(packageName, predicate, baseDir);
     }
 
+    public static Set<Class<?>> searchClasses(String packageName, MyPredicate<String> predicate,
+        MavenProject mavenProject) {
+        return ScanExecutor.getInstance().search(packageName, predicate, mavenProject);
+    }
+
     public static void searchClasses(String packageName, MyPredicate<String> predicate,
         Observer observer) {
         for (Class<?> searchClass : searchClasses(packageName, predicate)) {
@@ -33,5 +39,12 @@ public class ClassScannerUtils {
         }
     }
 
+
+    public static void searchClasses(String packageName, MyPredicate<String> predicate,
+        Observer observer, MavenProject mavenProject) {
+        for (Class<?> searchClass : searchClasses(packageName, predicate, mavenProject)) {
+            observer.notifyAnalyser(searchClass);
+        }
+    }
 
 }

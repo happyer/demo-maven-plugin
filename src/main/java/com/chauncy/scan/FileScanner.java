@@ -6,6 +6,7 @@ import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.HashSet;
 import java.util.Set;
+import org.apache.maven.project.MavenProject;
 
 public class FileScanner implements ClassScan {
 
@@ -22,7 +23,11 @@ public class FileScanner implements ClassScan {
 
     public FileScanner(String defaultClassPath) {
         this.defaultClassPath = defaultClassPath;
+    }
 
+
+    public FileScanner(MavenProject mavenProject) {
+        this.defaultClassPath = mavenProject.getBasedir().getPath();
     }
 
     public FileScanner() {
@@ -65,7 +70,7 @@ public class FileScanner implements ClassScan {
                             File file1 = new File(baseDir);
                             URLClassLoader urlClassLoader = new URLClassLoader(
                                 new URL[]{file1.toURI().toURL()});
-                            Class<?> clazz = Class.forName(name,true,urlClassLoader);
+                            Class<?> clazz = Class.forName(name, true, urlClassLoader);
                             classPaths.add(clazz);
                         }
 

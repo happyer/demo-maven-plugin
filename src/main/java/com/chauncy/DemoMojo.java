@@ -7,27 +7,32 @@ import com.chauncy.scan.Observer;
 import com.chauncy.scan.ObserverImpl;
 import com.chauncy.scan.SerializerClassAnalyse;
 import org.apache.maven.plugin.AbstractMojo;
-import org.apache.maven.plugin.MojoExecutionException;
-import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.plugins.annotations.Mojo;
+import org.apache.maven.plugins.annotations.Parameter;
+import org.apache.maven.project.MavenProject;
 
-@Mojo(name = "hello")
+@Mojo(name = "scan")
 public class DemoMojo extends AbstractMojo {
 
 
-    public void execute() throws MojoExecutionException, MojoFailureException {
+    @Parameter(property = "project", readonly = true)
+    private MavenProject project;
+
+
+    public void execute() {
 
         Observer observer = new ObserverImpl();
         observer.addAnalyser(new BigDecimalClassAnalyse());
         observer.addAnalyser(new SerializerClassAnalyse());
 
-        String baseDir = "/Users/chauncy/Desktop/self/Study/MyNetty4/target/classes/";
         ClassScannerUtils.searchClasses("com.netease.music", new MyPredicate<String>() {
             public boolean test(String oo) {
                 return oo.contains("DTO") || oo.contains("VO") || oo
                     .contains("Dto");
             }
-        }, observer, baseDir);
+        }, observer,project);
+
+
     }
 
 }
